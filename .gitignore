@@ -22,3 +22,6 @@ Thumbs.db
 # Misc
 *.bak
 *.tmp
+
+# Personal notes directory
+__notes/
