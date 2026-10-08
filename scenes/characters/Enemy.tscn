@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://clldtl2gkm6oh"]
+
+[ext_resource type="Script" uid="uid://ch3ot64v2imdh" path="res://scripts/characters/Enemy.gd" id="1_tfno1"]
+[ext_resource type="Texture2D" uid="uid://bhmfkymv2av1" path="res://assets/sprites/dummy_enemy.svg" id="2_y5r6l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ql73s"]
+radius = 32.0
+height = 64.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tfno1"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql73s"]
+size = Vector2(74, 20)
+
+[node name="Enemy" type="CharacterBody2D" unique_id=1080736725]
+script = ExtResource("1_tfno1")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=807288678]
+texture = ExtResource("2_y5r6l")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=385381318]
+shape = SubResource("CapsuleShape2D_ql73s")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=518796508]
+
+[node name="HealthBar" type="ProgressBar" parent="." unique_id=866792020]
+offset_left = -28.0
+offset_top = -66.0
+offset_right = 28.0
+offset_bottom = -39.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_tfno1")
+show_percentage = false
+
+[node name="HitboxPivot" type="Marker2D" parent="." unique_id=1578081886]
+
+[node name="Hitbox" type="Area2D" parent="HitboxPivot" unique_id=284357199]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxPivot/Hitbox" unique_id=1730091516]
+position = Vector2(14, 1)
+shape = SubResource("RectangleShape2D_ql73s")
+
+[node name="ColorRect" type="ColorRect" parent="HitboxPivot/Hitbox" unique_id=1300943183]
+offset_left = 7.0
+offset_top = -9.0
+offset_right = 47.0
+offset_bottom = 31.0

@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://jydknt7hnhmo"]
+
+[ext_resource type="Script" uid="uid://dbsj3wrcrd3ma" path="res://scripts/characters/Player.gd" id="1_pq8s5"]
+[ext_resource type="Texture2D" uid="uid://x5vq4vlg2gdx" path="res://assets/sprites/idle_right.png" id="2_gin2a"]
+[ext_resource type="Texture2D" uid="uid://dr73ho6262tvq" path="res://assets/sprites/run_right.png" id="3_7n8ao"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v0s4m"]
+radius = 37.0
+height = 130.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ql73s"]
+size = Vector2(65, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ql73s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_gin2a")
+}],
+"loop": 1,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_7n8ao")
+}],
+"loop": 1,
+"name": &"run",
+"speed": 10.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7n8ao"]
+bg_color = Color(0, 0.596836, 0.11741107, 1)
+
+[node name="Player" type="CharacterBody2D" unique_id=76560321]
+script = ExtResource("1_pq8s5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1366591651]
+shape = SubResource("CapsuleShape2D_v0s4m")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=494598752]
+
+[node name="HitboxPivot" type="Marker2D" parent="." unique_id=1474793561]
+
+[node name="Hitbox" type="Area2D" parent="HitboxPivot" unique_id=688533247]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitboxPivot/Hitbox" unique_id=1603296712]
+position = Vector2(34, 6)
+shape = SubResource("RectangleShape2D_ql73s")
+
+[node name="ColorRect" type="ColorRect" parent="HitboxPivot/Hitbox" unique_id=1979062393]
+offset_left = 18.0
+offset_top = 7.0
+offset_right = 58.0
+offset_bottom = 47.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=904914745]
+position = Vector2(8, 16)
+sprite_frames = SubResource("SpriteFrames_ql73s")
+animation = &"run"
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=933185073]
+
+[node name="PlayerHealthBar" type="ProgressBar" parent="HUD" unique_id=789583571]
+offset_left = 20.0
+offset_top = 20.0
+offset_right = 125.0
+offset_bottom = 47.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_7n8ao")
+show_percentage = false
